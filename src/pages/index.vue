@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas width="1000px" height="600px"></canvas>
+    <canvas id="canvas" width="1000px" height="600px"></canvas>
   </div>
 </template>
 <script>
@@ -12,9 +12,25 @@
       }
     },
     mounted(){
-      this.draw()
+      // this.draw()
+      this.testGradient()
     },
     methods: {
+      //渐变
+      testGradient(){
+        let canvas = document.getElementById('canvas')
+        let context = canvas.getContext('2d')
+        canvas.width = 400
+        canvas.height = 400
+        let grd = context.createLinearGradient(100,100,100,300)
+        grd.addColorStop(0,'pink')
+        grd.addColorStop(0.3,'blue')
+        grd.addColorStop(0.5,'orange')
+        grd.addColorStop(0.7,'green')
+        grd.addColorStop(1,'red')
+        context.fillStyle = grd
+        context.fillRect(100,100,200,200)
+      },
       //绘制动画
       draw(){
         const canvas = document.querySelector('canvas');
